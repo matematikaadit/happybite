@@ -62,3 +62,5 @@ for i in range(len(numbers)):
             last = p
 
 print(last)
+
+# output: 40824
