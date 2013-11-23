@@ -49,18 +49,12 @@ nstr = """
 71636269561882670428252483600823257530420752963450
 """
 
-numbers = [int(i) for i in nstr if i in "0123456789"] # ignore newline
+from operator import mul
+from string import whitespace
 
-last = 0
+numbers = [int(i) for i in nstr if i not in whitespace] # ignore newline
 
-for i in range(len(numbers)):
-    if 3 < i:
-        # python has sum() but no product()
-        # see: http://stackoverflow.com/q/595374/1072844
-        p = reduce(lambda x, y: x * y, numbers[i-4:i+1])
-        if p > last:
-            last = p
-
+last = max(reduce(mul,numbers[i:i+5]) for i in range(len(numbers)-5))
 print(last)
 
 # output: 40824
