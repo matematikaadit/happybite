@@ -26,7 +26,7 @@
 # 05886116467109405077541002256983155200055935729725
 # 71636269561882670428252483600823257530420752963450
 
-nstr = """
+source = """
 73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
@@ -51,8 +51,9 @@ nstr = """
 
 from operator import mul
 from string import whitespace
+from functools import reduce
 
-numbers = [int(i) for i in nstr if i not in whitespace] # ignore newline
+numbers = [int(i) for i in source if i not in whitespace] # ignore newline
 
 last = max(reduce(mul,numbers[i:i+5]) for i in range(len(numbers)-5))
 print(last)
