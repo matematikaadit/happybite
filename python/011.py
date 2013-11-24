@@ -27,36 +27,22 @@ source = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """.strip()
 
-grid = map(lambda line: map(int, line.split()), source.splitlines())
+grid = [[int(x) for x in row.split()] for row in source.splitlines()] 
 
 from operator import mul
 from functools import reduce
 
 largest = 0
-
 SIZE = 20
 
-for i in range(SIZE):
-    for j in range(SIZE):
-        if i <= SIZE - 4:
-            x = reduce(mul, (grid[i+k][j] for k in range(4)))
-            print('v',i,j,x)
-            largest = max(largest, x)
-            if j <= SIZE - 4:
-                x = reduce(mul, (grid[i+k][j+k] for k in range(4)))
-                print('ld',i,j,x)
-                largest = max(largest, x)
-        
-        if j <= SIZE - 4:
-            x = reduce(mul, (grid[i][j+k] for k in range(4)))
-            largest = max(largest, x)
-            print('h',i,j,x)
-
-        if i >= 3:
-            if j >= 3:
-                x = reduce(mul, (grid[i-k][j-k] for k in range(4)))
-                print('rd',i,j,x)
-                largest = max(largest, x)
+for y in range(SIZE):
+    for x in range(SIZE):
+        h = reduce(mul,grid[y][x:x+4]) if x <= SIZE-4 else 0
+        v = reduce(mul,list(zip(*grid))[x][y:y+4]) if y <= SIZE-4 else 0
+        md = reduce(mul,[grid[y+i][x+i] for i in range(4)]) if y <= SIZE-4 and x <= SIZE-4 else 0
+        ad = reduce(mul,[grid[y+i][x-i] for i in range(4)]) if y <= SIZE-4 and x >= 3 else 0
+        largest = max(h,v,md,ad,largest)
 
 print(largest)
 
+# output: 70600674
