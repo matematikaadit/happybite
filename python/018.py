@@ -22,6 +22,12 @@ source = """
 
 grid = [[int(x) for x in row.split()] for row in source.splitlines()]
 
-for y in range(len(grid)):
-    for x in range(len(grid[y])):
-        pass
+def max_path(y, x):
+    if y < len(grid) - 1:
+        return grid[y][x] + max(max_path(y+1,x), max_path(y+1,x+1))
+    else:
+        return grid[y][x]
+
+print(max_path(0,0))
+
+# output: 1074
