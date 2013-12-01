@@ -9,7 +9,7 @@ def lattice(m,n):
 
     if (m, n) in lat:
         return lat[(m,n)]
-    
+
     if m == 0:
         k = 1
     else:

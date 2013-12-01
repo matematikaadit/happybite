@@ -27,7 +27,7 @@ source = """
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 """.strip()
 
-grid = [[int(x) for x in row.split()] for row in source.splitlines()] 
+grid = [[int(x) for x in row.split()] for row in source.splitlines()]
 
 from operator import mul
 from functools import reduce
