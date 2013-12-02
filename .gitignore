@@ -1,0 +1,3 @@
+*.sublime-project
+*.sublime-workspace
+ipython_log.py
