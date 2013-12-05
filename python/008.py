@@ -50,10 +50,9 @@ source = """
 """
 
 from operator import mul
-from string import whitespace
 from functools import reduce
 
-numbers = [int(i) for i in source if i not in whitespace] # ignore newline
+numbers = [int(i) for i in source if i.isdigit() ] # ignore newline
 
 last = max(reduce(mul,numbers[i:i+5]) for i in range(len(numbers)-5))
 print(last)

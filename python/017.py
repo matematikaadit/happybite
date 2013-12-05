@@ -64,11 +64,9 @@ def words(n):
 
     return ' '.join(list(reversed([i for i in wordlist if i != ''])))
 
-from string import ascii_lowercase
-
 total = 0
 for n in range(1,1001):
-    total += len([c for c in words(n) if c in ascii_lowercase])
+    total += len([c for c in words(n) if c.islower()])
 print(total)
 
 # output: 21124
