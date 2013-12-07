@@ -10,6 +10,8 @@ primes = [2,3,5,7,11]
 
 def prime(n):
     for p in primes:
+        if p*p > n:
+            break
         if n % p == 0:
             return False
     return True
