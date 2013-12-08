@@ -16,20 +16,21 @@ def triangles():
         yield (n+1) * n // 2
         n += 1
 
-pl = primes(2000000)
+pl = primes(65536)
 
 def d(n):
     rest = 1
     for i in pl:
-        e = 1
+        if n == 1: break
         if i * i > n:
             rest *= 2
             break
-        while n % i == 0:
-            e += 1
-            n //= i
-        rest *= e
-        if n == 1: break
+        if n % i == 0:
+            e = 1
+            while n % i == 0:
+                e += 1
+                n //= i
+            rest *= e
     return rest
 
 def solve():
@@ -44,4 +45,4 @@ solve()
 # output: 76576500
 # TODO: consider using more efficient method
 # BEFORE: 25.6 s
-# AFTER: 1.6 s
+# AFTER: 1.01 s
