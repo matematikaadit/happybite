@@ -10,7 +10,7 @@ from fractions import gcd
 res = 1
 
 def lcd(a, b):
-    return a * b / gcd(a, b)
+    return a * b // gcd(a, b)
 
 for i in range(1, 21):
     res = lcd(res, i)

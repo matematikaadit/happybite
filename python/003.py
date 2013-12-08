@@ -12,7 +12,7 @@ while n > 1:
     if n%k==0:
         last = k
         while n%k==0:
-            n /= k
+            n //= k
     k += 1
 
 print(last)

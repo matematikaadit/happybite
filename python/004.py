@@ -9,7 +9,7 @@ def reverse(num):
     ret = 0
     while num > 0:
         ret = ret * 10 + num % 10
-        num /= 10
+        num //= 10
     return ret
 
 def palindrome(n):
