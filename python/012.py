@@ -3,32 +3,45 @@
 # What is the value of the first triangular number to have over five hundred
 # divisors?
 
-divisor = 1
-n = 1
-number = 0
+def primes(n):
+    sieve = [True] * n
+    for i in range(3,int(n**0.5)+1,2):
+        if sieve[i]:
+            sieve[i*i::2*i] = [False] * ((n-i*i-1)//(2*i)+1)
+    return [2] + [i for i in range(3,n,2) if sieve[i]]
 
-def num_of_divisor(number):
-    d = 1
-    k = 2
+def triangles():
+    n = 1
+    while True:
+        yield (n+1) * n // 2
+        n += 1
 
-    while number > 1:
-        if number % k == 0:
-            p = 0
-            while number % k == 0:
-                p += 1
-                number //= k
-            d *= (p+1)
-        k += 1
+pl = primes(2000000)
 
-    return d
+def d(n):
+    rest = 1
+    for i in pl:
+        e = 1
+        if i * i > n:
+            rest *= 2
+            break
+        while n % i == 0:
+            e += 1
+            n //= i
+        rest *= e
+        if n == 1: break
+    return rest
 
-while divisor <= 500:
-    number += n
-    n += 1
-    divisor = num_of_divisor(number)
-    # if divisor > 300: print(number,divisor)
+def solve():
+    for i in triangles():
+        last = d(i)
+        if last >= 500:
+            print(i)
+            break
 
-print(number)
+solve()
 
 # output: 76576500
 # TODO: consider using more efficient method
+# BEFORE: 25.6 s
+# AFTER: 1.6 s
