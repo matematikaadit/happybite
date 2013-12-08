@@ -4,22 +4,12 @@
 #
 # Find the sum of all the primes below two million.
 
-MAX = 2000000
+def primes(n):
+    sieve = [True] * n
+    for i in range(3,int(n**0.5)+1,2):
+        if sieve[i]:
+            sieve[i*i::2*i] = [False] * ((n-i*i-1)//(2*i)+1)
+    return [2] + [i for i in range(3,n,2) if sieve[i]]
 
-primality = [True] * MAX
-
-primality[0] = False
-primality[1] = False
-
-k = 2
-while k*k < MAX:
-    if primality[k]:
-        for i in range(k*k,MAX,k):
-            primality[i] = False
-    k += 1
-
-total = sum(x for x, verdict in enumerate(primality) if verdict)
-
-print(total)
-
-# output: 141676
+print(sum(primes(2000000)))
+# output: 142913828922
