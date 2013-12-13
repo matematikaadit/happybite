@@ -4,28 +4,21 @@
 #
 # What is the 10001st prime number?
 
-# naive method
+import primes
 
-primes = [2,3,5,7,11]
+# n-th primes always less than
+# n*(ln(n)+ln(ln(n)))
+# for all n >= 6
+# see:
+# http://en.wikipedia.org/wiki/Prime_number_theorem#Approximations_for_the_nth_prime_number
 
-def prime(n):
-    for p in primes:
-        if p*p > n:
-            break
-        if n % p == 0:
-            return False
-    return True
+from math import log # ln is log in math
 
-k = 5  # 5 bilangan prima sudah kita daftar di dalam primes
-n = 13 # bilangan selanjutnya yang di cek
+k = 10000
+limit = int(k * (log(k) + log(log(k))))
 
-while k < 10001:
-    if prime(n):
-        primes.append(n)
-        k += 1
-    n += 2
+ps = primes.gen(limit)
 
-
-print(primes[-1])
+print(ps[k])
 
 # output: 104743

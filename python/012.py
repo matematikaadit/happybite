@@ -3,20 +3,14 @@
 # What is the value of the first triangular number to have over five hundred
 # divisors?
 
-def primes(n):
-    sieve = [True] * n
-    for i in range(3,int(n**0.5)+1,2):
-        if sieve[i]:
-            sieve[i*i::2*i] = [False] * ((n-i*i-1)//(2*i)+1)
-    return [2] + [i for i in range(3,n,2) if sieve[i]]
-
 def triangles():
     n = 1
     while True:
         yield (n+1) * n // 2
         n += 1
 
-pl = primes(65536)
+import primes
+pl = primes.gen(65536)
 
 def d(n):
     rest = 1
