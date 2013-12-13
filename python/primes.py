@@ -8,3 +8,10 @@ def gen(n):
         if sieve[i]:
             sieve[i*i::2*i] = [False] * ((n-i*i-1)//(2*i)+1)
     return [2] + [i for i in range(3,n,2) if sieve[i]]
+
+def right(n):
+    if n < 2: return False
+    for i in range(2,int(n**0.5)+1):
+        if n % i == 0:
+            return False
+    return True
