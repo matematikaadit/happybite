@@ -12,27 +12,18 @@
 
 import primes
 p = primes.gen(1000)
-pc = primes.gen(p[-1]**2+1000*p[-1]+p[-1])
-
-def not_prime(n):
-    for m in pc:
-        if n == m:
-            return False
-        if n < m:
-            return True
-    return True
 
 def strike(a,b):
     for n in range(b):
         fn = n*n + a*n + b
-        if not_prime(fn):
+        if not(primes.right(fn)):
             return n
     return b
 
 ma, mb, mn = 0, 0, 0
 
 for a in range(-999,1000,2):
-    for b in p:
+    for b in p[12:]: # p[12] == 41, starting from there.
         n = strike(a,b)
         if n > mn:
             ma, mb, mn = a, b, n
