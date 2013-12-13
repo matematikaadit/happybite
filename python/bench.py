@@ -16,5 +16,9 @@ def run(fs=fs):
         if d > 1:
             print("{} ({:.1f} s)".format(script,d))
 
+import sys
 if __name__ == '__main__':
-    run()
+    if len(sys.argv) > 1:
+        run(sys.argv[1:])
+    else:
+        run()
