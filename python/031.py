@@ -9,13 +9,17 @@
 
 a = (1,2,5,10,20,50,100,200)
 
-def f(n,k):
-    if n < 0 or k < 0:
-        return 0
-    if n == 0:
-        return 1
-    return f(n,k-1) + f(n-a[k],k)
+t = [[0 for _ in range(len(a))] for _ in range(201)]
 
-print(f(200,len(a)-1))
+for n in range(len(t)):
+    for k in range(len(t[n])):
+        if n == 0 or k == 0:
+            t[n][k] = 1
+        elif n - a[k] < 0:
+            t[n][k] = t[n][k-1]
+        else:
+            t[n][k] = t[n][k-1] + t[n-a[k]][k]
+
+print(t[200][-1])
 
 # output: 73682
