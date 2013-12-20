@@ -8,7 +8,7 @@ def bench(f,*arg):
     end = time.perf_counter()
     return end - start
 
-fs = sorted(glob('???.py'))
+fs = sorted(glob('p???.py'))
 cmd = lambda s:subp.call(['python3',s],stdout=subp.DEVNULL)
 def run(fs=fs):
     for script in fs:
@@ -17,8 +17,9 @@ def run(fs=fs):
             print("{} ({:.1f} s)".format(script,d))
 
 import sys
+TIME_LIMIT = 60 # second
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
+    if len(sys.argv) > TIME_LIMIT:
         run(sys.argv[1:])
     else:
         run()
