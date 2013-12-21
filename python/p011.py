@@ -35,13 +35,21 @@ from functools import reduce
 largest = 0
 SIZE = 20
 
+def off(x, y):
+    if y == -1: return x < 3
+    return x > (SIZE - 4*y)
+
+def product(y, x, a, b):
+    if off(y, a) or off(x, b): return 0
+    return reduce(mul,[grid[y+k*a][x+k*b] for k in range(4)])
+
 for y in range(SIZE):
     for x in range(SIZE):
-        h = reduce(mul,grid[y][x:x+4]) if x <= SIZE-4 else 0
-        v = reduce(mul,list(zip(*grid))[x][y:y+4]) if y <= SIZE-4 else 0
-        md = reduce(mul,[grid[y+i][x+i] for i in range(4)]) if y <= SIZE-4 and x <= SIZE-4 else 0
-        ad = reduce(mul,[grid[y+i][x-i] for i in range(4)]) if y <= SIZE-4 and x >= 3 else 0
-        largest = max(h,v,md,ad,largest)
+        h = product(y,x,0,1)
+        v = product(y,x,1,0)
+        d = product(y,x,1,1)
+        a = product(y,x,1,-1)
+        largest = max(h,v,d,a,largest)
 
 print(largest)
 
