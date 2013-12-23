@@ -34,6 +34,7 @@ func main() {
 		n := tri(i)
 		if divisor(n) >= 500 {
 			fmt.Println(n)
+			// output: 76576500
 			break
 		}
 	}
