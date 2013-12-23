@@ -22,6 +22,7 @@ for i in range(1,1000000):
     if c > longest[1]:
         longest = [i, c]
 
-print(longest[0])
+print(longest)
 
-# output: 837799
+# output: [837799, 525]
+# TODO: buat lebih efisien
