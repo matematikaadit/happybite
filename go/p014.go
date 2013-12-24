@@ -2,30 +2,31 @@ package main
 
 import "fmt"
 
-var collmap = make(map[int64]int64)
+var collslice [1000000]int
 
-func collatz(n int64) (count int64) {
-	v, ok := collmap[n]
-	if ok {
-		return v
+func collatz(n int64) int {
+	orin := n
+	count := 0
+
+	for n >= orin {
+		switch n % 2 {
+		case 0:
+			count++
+			n = n / 2
+		case 1:
+			count++
+			n = n*3 + 1
+		}
 	}
-	if n < 3 {
-		collmap[n] = n
-		return n
-	}
-	count = 1
-	switch n % 2 {
-	case 0:
-		count = 1 + collatz(n/2)
-	case 1:
-		count = 1 + collatz(3*n+1)
-	}
-	collmap[n] = count
-	return count
+	collslice[orin] = count + collslice[n]
+	return collslice[orin]
 }
+
 func main() {
-	var a, na int64 = 1, 1
-	for i := int64(1); i < 1000000; i++ {
+	var a int64 = 1
+	var na int = 1
+	collslice[1] = 1
+	for i := int64(2); i < 1000000; i++ {
 		ni := collatz(i)
 		if na <= ni {
 			a, na = i, ni
