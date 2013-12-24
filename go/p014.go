@@ -9,13 +9,13 @@ func collatz(n int64) int {
 	count := 0
 
 	for n >= orin {
-		switch n % 2 {
+		switch n & 1 {
 		case 0:
 			count++
-			n = n / 2
+			n = n >> 1
 		case 1:
 			count++
-			n = n*3 + 1
+			n = n<<1 + n + 1
 		}
 	}
 	collslice[orin] = count + collslice[n]
