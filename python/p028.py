@@ -4,8 +4,8 @@
 # formed in the same way?
 def spiral(n):
     s = 1
-    for n in range(3,n+1,2):
-        s += 4*n*n - 6*(n-1) # by finding the pattern
+    for i in range(3,n+1,2):
+        s += 4*i*i - 6*(i-1) # by finding the pattern
     return s
 
 print(spiral(1001))
