@@ -15,10 +15,11 @@ abundant = [ n for n in range(largest) if d[n] > n ]
 
 asum = [False for _ in range(largest)]
 
-from itertools import combinations_with_replacement
-s = combinations_with_replacement(abundant, 2)
-for i, j in s:
-    if i+j < largest: asum[i+j] = True
+for i in range(len(abundant)):
+    for j in range(i+1):
+        index = abundant[i]+abundant[j]
+        if index < largest:
+            asum[index] = True
 
 result = [n for n in range(largest) if not(asum[n])]
 print(sum(result))
