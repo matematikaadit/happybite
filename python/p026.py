@@ -6,7 +6,7 @@
 def recycle(n):
     pos = {}
     a = 1
-    for i in range(0,n):
+    for i in range(n):
         if a in pos:
             return i - pos[a]
         if a == 0:
