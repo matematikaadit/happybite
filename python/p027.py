@@ -16,7 +16,7 @@ p = primes.gen(1000)
 def strike(a,b):
     for n in range(b):
         fn = n*n + a*n + b
-        if not(primes.right(fn)):
+        if not(primes.test(fn)):
             return n
     return b
 
