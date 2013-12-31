@@ -18,7 +18,7 @@ func State(n int) []bool {
 	state := make([]bool, n)
 	state[0] = true
 	state[1] = true
-	for i := 4; i*i < n; i += 2 {
+	for i := 4; i < n; i += 2 {
 		state[i] = true
 	}
 	for i := 3; i*i < n; i += 2 {
