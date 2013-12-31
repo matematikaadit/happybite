@@ -2,27 +2,30 @@
 #
 # Which starting number, under one million, produces the longest chain?
 
-collatz = {1: 1, 2: 2}
+collist = [0]*1000000
 
-def collatz_chain(number):
-    if number in collatz:
-        return collatz[number]
+def collatz(n):
+    orin = n
+    count = 0
 
-    k = 1
-    if number % 2 == 0:
-        k = 1 + collatz_chain(number//2)
-    else:
-        k = 1 + collatz_chain(3*number+1)
-    collatz[number] = k
-    return k
+    while n >= orin:
+        if n % 2 == 0:
+            count += 1
+            n //= 2
+        else:
+            count += 1
+            n = n*3+1
+    collist[orin] = count + collist[n]
+    return collist[orin]
 
-longest = [1, 1]
-for i in range(1,1000000):
-    c = collatz_chain(i)
-    if c > longest[1]:
-        longest = [i, c]
+a = [1, 1]
+collist[1] = 1
+for i in range(2,1000000):
+    c = collatz(i)
+    if c > a[1]:
+        a = [i, c]
 
-print(longest)
+print(a)
 
 # output: [837799, 525]
 # TODO: buat lebih efisien
