@@ -17,9 +17,8 @@ def run(fs=fs):
             print("{} ({:.1f} s)".format(script,d))
 
 import sys
-TIME_LIMIT = 60 # second
 if __name__ == '__main__':
-    if len(sys.argv) > TIME_LIMIT:
+    if len(sys.argv) > 1:
         run(sys.argv[1:])
     else:
         run()
