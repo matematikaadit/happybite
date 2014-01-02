@@ -19,6 +19,7 @@ func main() {
 		}
 	}
 	fmt.Println(count)
+	// output: 55
 }
 
 func cycle(v int) int {
