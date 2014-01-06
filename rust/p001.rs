@@ -6,4 +6,5 @@ fn main() {
         }
     }
     println(sum.to_str());
+    // output: 233168
 }
