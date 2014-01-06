@@ -18,5 +18,5 @@ func main() {
 		k += 1
 	}
 	fmt.Println(last)
-	// output: 6
+	// output: 6857
 }
