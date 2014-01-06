@@ -18,5 +18,5 @@ func main() {
 		result = lcd(result, i)
 	}
 	fmt.Println(result)
-	// output:
+	// output: 232792560
 }
