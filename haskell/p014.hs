@@ -1,4 +1,4 @@
-import Data.List
+import Data.List (foldl')
 
 main = print $ j 1000000 where
 f :: Int -> Integer -> Int
